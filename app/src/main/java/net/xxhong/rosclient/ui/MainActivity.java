@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.jilk.ros.Example;
 import com.jilk.ros.ROSClient;
 import com.jilk.ros.rosbridge.ROSBridgeClient;
 
@@ -44,7 +45,8 @@ public class MainActivity extends Activity {
                 ((RCApplication)getApplication()).setRosClient(client);
                 showTip("Connect ROS success");
                 Log.d(TAG,"Connect ROS success");
-                startActivity(new Intent(MainActivity.this,NodesActivity.class));
+                Intent intent=new Intent(MainActivity.this, NodesActivity.class);
+                startActivity(intent);
             }
 
             @Override
@@ -77,9 +79,13 @@ public class MainActivity extends Activity {
             case R.id.tv_ros:
                 break;
             case R.id.btn_connect:
-                String ip = etIP.getText().toString();
-                String port = etPort.getText().toString();
+                //String ip = etIP.getText().toString();
+//                String port = etPort.getText().toString();
+                String ip="192.168.116.129";
+                String port = "9090";
                 connect(ip, port);
+
+            //    Example.main(databaseList());
                 break;
             default:break;
         }

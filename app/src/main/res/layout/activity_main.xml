@@ -41,12 +41,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:textColor="#ff0000"
-        android:text="Please ensure the rosbridge server is started,\nor visit xxhong.net"/>
+        android:text="Pleadasdsase ensure the asdsadsadasdge server is started,\nor visit xxhong.net"/>
     <Button android:id="@+id/btn_connect"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:text="Connect"
         android:textColor="#ffffff"
-        android:background="#1E88E5"/>
+        android:background="#1E88E5"
+        android:onClick="onClick"/>
 </LinearLayout>

@@ -1,8 +1,11 @@
 package net.xxhong.rosclient;
 
 import android.app.Application;
+import android.widget.Toast;
 
 import com.jilk.ros.rosbridge.ROSBridgeClient;
+
+import net.xxhong.rosclient.ui.MainActivity;
 
 /**
  * Created by xxhong on 16-11-21.

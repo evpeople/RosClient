@@ -32,7 +32,7 @@ public class Example {
     public Example() {}
     
     public static void main(String[] args) {        
-        ROSBridgeClient client = new ROSBridgeClient("ws://162.243.238.80:9090");
+        ROSBridgeClient client = new ROSBridgeClient("ws://10.0.2.2:9090");
         client.connect();
         //testTopic(client);
         try {

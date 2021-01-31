@@ -1,7 +1,7 @@
 ### RosClient: Android app for ROS
 Android communicate with ROS(Robot Operating System),based on [rosbridge protocol](https://github.com/RobotWebTools/rosbridge_suite/blob/groovy-devel/ROSBRIDGE_PROTOCOL.md)
 
-see more in my blog http://xxhong.net/ (In Chinese)
+see more in my blog http://xxhong.net/ (In Chinese   不要点开，啥都没有 赌博网站)
 
 ### Features
 1. Enum all ROS nodes,service,topics

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jilk.ros.message.Message;
 import com.jilk.ros.rosapi.message.TypeDef;
 import com.jilk.ros.rosbridge.ROSBridgeClient;
 import com.unnamed.b.atv.model.TreeNode;
@@ -44,6 +45,7 @@ public class DetailActivity extends Activity {
     TextView tvTitle;
     @Bind(R.id.tv_log)
     TextView tvLog;
+
     @Bind(R.id.btn_topic_sub)
     Button btnSubTopic;
     @Bind(R.id.btn_call)
@@ -70,18 +72,22 @@ public class DetailActivity extends Activity {
         setContentView(R.layout.activity_detail);
         EventBus.getDefault().register(this);
         ButterKnife.bind(this);
-
-        tvLog.setMovementMethod(new ScrollingMovementMethod());
+        ScrollingMovementMethod a = new ScrollingMovementMethod();
+        tvLog= (TextView) findViewById(R.id.tv_log);
+        tvLog.setMovementMethod(a);
         client = ((RCApplication)getApplication()).getRosClient();
         detailType= getIntent().getStringExtra("type");
         detailName= getIntent().getStringExtra("name");
+        tvTitle= (TextView) findViewById(R.id.tv_type_name);
         tvTitle.setText(detailType + ":" + detailName);
 
         try {
             if(detailType.equalsIgnoreCase("topic")) {
                 typeDef = client.getTopicMessageList(detailName);
             } else if(detailType.equalsIgnoreCase("service")) {
+                btnSubTopic= (Button) findViewById(R.id.btn_topic_sub);
                 btnSubTopic.setVisibility(View.GONE);
+                btnCall= (Button) findViewById(R.id.btn_call);
                 btnCall.setText("Call");
                 typeDef = client.getServiceRequestList(detailName);
             }
@@ -90,6 +96,7 @@ public class DetailActivity extends Activity {
             genParamTree(root, typeDef[0]);
 
             AndroidTreeView tView = new AndroidTreeView(this, root);
+            paramContainer= (LinearLayout) findViewById(R.id.ll_param_layout);
             paramContainer.addView(tView.getView());
 
             tView.expandAll();
@@ -141,14 +148,19 @@ public class DetailActivity extends Activity {
     }
 
     @OnClick({R.id.btn_call,R.id.btn_topic_sub})
-    public void onClick(View view) {
+    public void onClick(View view) throws InterruptedException {//此处异常是下面的todo
         switch (view.getId()) {
             case R.id.btn_topic_sub:
+                btnSubTopic= (Button) findViewById(R.id.btn_topic_sub);
                 if(isSubscribe) {
                     client.send("{\"op\":\"unsubscribe\",\"topic\":\"" + detailName + "\"}");
                     btnSubTopic.setText("Subscribe");
                 } else {
                     client.send("{\"op\":\"subscribe\",\"topic\":\"" + detailName + "\"}");
+                    Message t = client.getTopicMessageDetails(detailName);
+                    //Todo:client.getTopicMessageDetails(detailName) 获取点云基本信息，然后通过解码构图http://docs.ros.org/en/jade/api/sensor_msgs/html/msg/PointCloud2.html
+                    // 获取的数据是json 解码之后可以直接构图,直接看getmessage源码得到结果
+                    // 直接调用js代码
                     btnSubTopic.setText("Unsubscribe");
                 }
                 isSubscribe = !isSubscribe;

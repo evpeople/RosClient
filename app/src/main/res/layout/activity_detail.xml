@@ -28,17 +28,20 @@
             android:layout_marginRight="90dp"
             android:textStyle="bold"
             android:textSize="20sp"/>
-        <Button android:id="@+id/btn_topic_sub"
+
+        <Button
+            android:id="@+id/btn_topic_sub"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:padding="5dp"
-            android:textColor="#ffffff"
-            android:background="#1E88E5"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:text="Subscribe"/>
+            android:background="#1E88E5"
+            android:onClick="onClick"
+            android:padding="5dp"
+            android:text="Subscribe"
+            android:textColor="#ffffff" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -69,12 +72,15 @@
         android:layout_alignParentRight="true">
 
     </LinearLayout>
-    <Button android:id="@+id/btn_call"
+
+    <Button
+        android:id="@+id/btn_call"
         android:layout_width="90dp"
         android:layout_height="35dp"
-        android:textColor="#ffffff"
         android:background="#1E88E5"
-        android:text="Publish"/>
+        android:onClick="onClick"
+        android:text="Publish"
+        android:textColor="#ffffff" />
     <TextView android:id="@+id/tv_log"
         android:layout_width="match_parent"
         android:layout_height="400dp"

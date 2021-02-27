@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ROSClient</string>
+    <string name="move_forward">前进</string>
+    <string name="move_back">后退</string>
+    <string name="move_right">右转</string>
+    <string name="move_left">左转</string>
 </resources>

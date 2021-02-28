@@ -105,6 +105,7 @@ public class DetailActivity extends Activity {
         }
 
         if(detailName.equals("/cmd_vel")) {
+            //todo : 似乎有奇怪的问题
             processMoveTopic();
         }
     }
@@ -172,6 +173,7 @@ public class DetailActivity extends Activity {
                 if(detailType.equalsIgnoreCase("topic")) {
                     msg = "{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}";
                     client.send(msg);
+                    Log.d(TAG, "onClick: "+msg);
                 } else if(detailType.equalsIgnoreCase("service")) {
                     msg = "{\"op\":\"call_service\",\"service\":\"" + detailName + "\",\"args\":["+data+"]}";
                     client.send(msg);
@@ -217,7 +219,7 @@ public class DetailActivity extends Activity {
             @Override
             public void run() {
                 if (moving) {
-                    client.send("{\"op\":\"publish\",\"topic\":\"/cmd_vel\",\"msg\":{\"linear\":{\"x\":" + linearX + ",\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":" + angularZ + "}}}");
+                    client.send("{\"op\":\"publish\",\"topic\":\"/cmd_vel\",\"msg\":{\"linear\":{\"x\":" + 4 + ",\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":" + 5 + "}}}");
                     Log.d(TAG,"send cmd_vel msg:x:" + linearX + " z:" + angularZ);
                 }
             }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import net.xxhong.rosclient.RCApplication;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import static android.content.ContentValues.TAG;
 
 public class NodesActivity extends Activity {
 
@@ -111,7 +114,16 @@ public class NodesActivity extends Activity {
                             intent.putExtra("type","Service");
                             intent.putExtra("name", getChild(groupPosition, childPosition).toString());
                             startActivity(intent);
-                        } else if (groupPosition == 2) {    //Topic详细
+                        }
+                        else if(getChild(groupPosition, childPosition).toString().indexOf("/cmd_vel")!=-1)
+                        {
+                            Intent intent1=new Intent(NodesActivity.this,MoveActivity.class);
+                            intent1.putExtra("name", getChild(groupPosition, childPosition).toString());
+
+                            startActivity(intent1);
+                        }
+                        else if (groupPosition == 2) {    //Topic详细
+
                             intent.putExtra("type","Topic");
                             intent.putExtra("name", getChild(groupPosition, childPosition).toString());
                             startActivity(intent);

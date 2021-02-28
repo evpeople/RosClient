@@ -1,5 +1,6 @@
 package net.xxhong.rosclient.ui;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,13 +14,14 @@ import com.jilk.ros.rosbridge.ROSBridgeClient;
 import com.unnamed.b.atv.model.TreeNode;
 
 import net.xxhong.rosclient.R;
+import net.xxhong.rosclient.RCApplication;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.Bind;
 
-public class MoveActivity extends AppCompatActivity {
+public class MoveActivity extends Activity {
 
     private static final String TAG = "MoveActivity";
     ROSBridgeClient client;
@@ -52,23 +54,24 @@ public class MoveActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(net.xxhong.rosclient.R.layout.activity_move);
+        setContentView(R.layout.activity_move);
+        client = ((RCApplication)getApplication()).getRosClient();
+
+        detailName= getIntent().getStringExtra("name");
     }
 
 
     /** Called when the user taps the Send button */
     public void move_forward(View view) {
-        timer = new Timer();
-        TimerTask timerTask = new TimerTask() {
+        String data = "\"linear\":{\"x\":10,\"y\":10,\"z\":10},\"angular\":{\"x\":12,\"y\":32,\"z\":54}";
+        String msg = "";
 
-            @Override
-            public void run() {
-                if (moving) {
-                    client.send("{\"op\":\"publish\",\"topic\":\"/cmd_vel\",\"msg\":{\"linear\":{\"x\":" + linearX + ",\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":" + angularZ + "}}}");
-                    Log.d(TAG,"send cmd_vel msg:x:" + linearX + " z:" + angularZ);
-                }
-            }
-        };
+        msg = "{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}";
+        //client.send("{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}");
+        client.send(msg);
+        Log.d(TAG, "onClick: "+msg);
+
+
     }
     public void move_back(View view) {
         // Do something in response to button

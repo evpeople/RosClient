@@ -23,17 +23,21 @@ public class MainActivity extends Activity {
 
     private static final String TAG = "MainActivity";
 
-    @Bind(R.id.et_ip)
+
     EditText etIP;
-    @Bind(R.id.et_port)
+
     EditText etPort;
 
     ROSBridgeClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+
+        etIP = (EditText) findViewById(R.id.et_ip);
+
+        etPort = (EditText) findViewById(R.id.et_port);
     }
 
     private void connect(String ip, String port) {
@@ -42,24 +46,24 @@ public class MainActivity extends Activity {
             @Override
             public void onConnect() {
                 client.setDebug(true);
-                ((RCApplication)getApplication()).setRosClient(client);
+                ((RCApplication) getApplication()).setRosClient(client);
                 showTip("Connect ROS success");
-                Log.d(TAG,"Connect ROS success");
-                Intent intent=new Intent(MainActivity.this, NodesActivity.class);
+                Log.d(TAG, "Connect ROS success");
+                Intent intent = new Intent(MainActivity.this, NodesActivity.class);
                 startActivity(intent);
             }
 
             @Override
             public void onDisconnect(boolean normal, String reason, int code) {
                 showTip("ROS disconnect");
-                Log.d(TAG,"ROS disconnect");
+                Log.d(TAG, "ROS disconnect");
             }
 
             @Override
             public void onError(Exception ex) {
                 ex.printStackTrace();
                 showTip("ROS communication error");
-                Log.d(TAG,"ROS communication error");
+                Log.d(TAG, "ROS communication error");
             }
         });
     }
@@ -68,26 +72,27 @@ public class MainActivity extends Activity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(MainActivity.this, tip,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, tip, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    @OnClick({R.id.tv_ros,R.id.btn_connect})
+    @OnClick({R.id.tv_ros, R.id.btn_connect})
     public void onClick(View view) {
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.tv_ros:
                 break;
             case R.id.btn_connect:
-                //String ip = etIP.getText().toString();
-//                String port = etPort.getText().toString();
-                String ip="192.168.116.129";
-                String port = "9090";
+                String ip = etIP.getText().toString();
+                String port = etPort.getText().toString();
+                // String ip="192.168.116.129";
+                //String port = "9090";
                 connect(ip, port);
 
-            //    Example.main(databaseList());
+                //    Example.main(databaseList());
                 break;
-            default:break;
+            default:
+                break;
         }
     }
 }

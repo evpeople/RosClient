@@ -61,9 +61,9 @@ public class MoveActivity extends Activity {
     }
 
 
-    /** Called when the user taps the Send button */
+
     public void move_forward(View view) {
-        String data = "\"linear\":{\"x\":10,\"y\":10,\"z\":10},\"angular\":{\"x\":12,\"y\":32,\"z\":54}";
+        String data = "\"linear\":{\"x\":2,\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":0}";
         String msg = "";
 
         msg = "{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}";
@@ -74,12 +74,30 @@ public class MoveActivity extends Activity {
 
     }
     public void move_back(View view) {
-        // Do something in response to button
+        String data = "\"linear\":{\"x\":-2,\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":0}";
+        String msg = "";
+
+        msg = "{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}";
+        //client.send("{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}");
+        client.send(msg);
+        Log.d(TAG, "onClick: "+msg);
     }
     public void move_left(View view) {
-        // Do something in response to button
+        String data = "\"linear\":{\"x\":0,\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":2}";
+        String msg = "";
+
+        msg = "{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}";
+        //client.send("{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}");
+        client.send(msg);
+        Log.d(TAG, "onClick: "+msg);
     }
     public void move_right(View view) {
-        // Do something in response to button
+        String data = "\"linear\":{\"x\":0,\"y\":0,\"z\":1},\"angular\":{\"x\":0,\"y\":0,\"z\":-2}";
+        String msg = "";
+
+        msg = "{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}";
+        //client.send("{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}");
+        client.send(msg);
+        Log.d(TAG, "onClick: "+msg);
     }
 }

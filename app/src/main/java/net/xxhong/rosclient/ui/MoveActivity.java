@@ -63,7 +63,7 @@ public class MoveActivity extends Activity {
 
 
     public void move_forward(View view) {
-        String data = "\"linear\":{\"x\":2,\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":0}";
+        String data = "\"linear\":{\"x\":1,\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":0}";
         String msg = "";
 
         msg = "{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}";
@@ -74,7 +74,7 @@ public class MoveActivity extends Activity {
 
     }
     public void move_back(View view) {
-        String data = "\"linear\":{\"x\":-2,\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":0}";
+        String data = "\"linear\":{\"x\":-1,\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":0}";
         String msg = "";
 
         msg = "{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}";
@@ -83,7 +83,7 @@ public class MoveActivity extends Activity {
         Log.d(TAG, "onClick: "+msg);
     }
     public void move_left(View view) {
-        String data = "\"linear\":{\"x\":0,\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":2}";
+        String data = "\"linear\":{\"x\":0,\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":1}";
         String msg = "";
 
         msg = "{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}";
@@ -92,7 +92,7 @@ public class MoveActivity extends Activity {
         Log.d(TAG, "onClick: "+msg);
     }
     public void move_right(View view) {
-        String data = "\"linear\":{\"x\":0,\"y\":0,\"z\":1},\"angular\":{\"x\":0,\"y\":0,\"z\":-2}";
+        String data = "\"linear\":{\"x\":0,\"y\":0,\"z\":0},\"angular\":{\"x\":0,\"y\":0,\"z\":-1}";
         String msg = "";
 
         msg = "{\"op\":\"publish\",\"topic\":\"" + detailName + "\",\"msg\":{"+data+"}}";

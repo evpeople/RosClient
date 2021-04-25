@@ -83,10 +83,10 @@ public class MainActivity extends Activity {
             case R.id.tv_ros:
                 break;
             case R.id.btn_connect:
-                String ip = etIP.getText().toString();
-                String port = etPort.getText().toString();
-                // String ip="192.168.116.129";
-                //String port = "9090";
+//                String ip = etIP.getText().toString();
+//                String port = etPort.getText().toString();
+                 String ip="192.168.43.96";
+                String port = "9090";
                 connect(ip, port);
 
                 //    Example.main(databaseList());

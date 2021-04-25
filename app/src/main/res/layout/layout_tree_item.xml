@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#B5D3C8">
         <ImageView android:id="@+id/iv_icon"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -21,21 +22,27 @@
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:textSize="18sp"
-            android:text="Param"/>
+            android:textSize="20sp"
+            android:text="Param"
+            android:textColor="#23885A"/>
         <TextView android:id="@+id/tv_param_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:textSize="18sp"
-            android:text="Type"/>
+            android:textSize="20sp"
+            android:text="Type"
+            android:textColor="#23885A"/>
         <View
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <EditText android:id="@+id/et_value"
+            android:layout_weight="1"
+            />
+
+        <EditText
+            android:id="@+id/et_value"
             android:layout_width="90dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="21dp"
+            android:textColor="#23885A"/>
     </LinearLayout>
 </RelativeLayout>
